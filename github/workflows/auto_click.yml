@@ -1,0 +1,27 @@
+name: Adsterra Auto Clicker
+
+on:
+  workflow_dispatch:  # मैन्युअल रन के लिए
+  schedule:
+    - cron: '0 4 * * *'  # हर दिन सुबह 9:30 AM IST पर ऑटो रन (UTC में 4:00 AM)
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: कोड डाउनलोड करें
+        uses: actions/checkout@v2
+
+      - name: Python सेटअप करें
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Dependencies इंस्टॉल करें
+        run: |
+          pip install -r requirements.txt
+
+      - name: स्क्रिप्ट चलाएँ (main.py)
+        run: |
+          python main.py
+          
