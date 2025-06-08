@@ -1,0 +1,28 @@
+name: Adsterra Auto Clicker
+
+on:
+  schedule:
+    - cron: "0 4 * * *"  # रोज सुबह 9:30AM IST (4AM UTC)
+  workflow_dispatch:
+
+jobs:
+  click-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run bot script
+        run: |
+          python main.py
+          
